@@ -1,22 +1,47 @@
-/* Custom overrides for Tailwind (minimal, as most is handled by Tailwind classes) */
-body {
-    scroll-behavior: smooth; /* Smooth scrolling */
+/* Mobile menu styling for better appearance and functionality */
+#mobile-menu {
+    background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background for overlay effect */
+    backdrop-filter: blur(10px); /* Blur effect for modern look */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth slide-down */
+    opacity: 1; /* Default visible */
+    max-height: 500px; /* Allow full height */
+    overflow: hidden; /* Hide content when closed */
 }
 
+/* Mobile-specific transform (only on screens < 768px) */
+@media (max-width: 767px) {
+    #mobile-menu {
+        transform: translateY(-100%); /* Hide above on mobile */
+        opacity: 0; /* Invisible on mobile */
+        max-height: 0; /* Collapse on mobile */
+    }
 
-/* Subtle animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    #mobile-menu:not(.hidden) {
+        transform: translateY(0); /* Slide down on mobile when open */
+        opacity: 1; /* Fade in on mobile */
+        max-height: 500px; /* Expand on mobile */
+    }
 }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Menu item styling for better readability (removed separators) */
+#mobile-menu a {
+    display: block;
+    padding: 12px 16px; /* Comfortable touch targets */
+    color: #e5e7eb; /* Light gray text */
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Hover effects (enhanced) */
-.hover\:scale-105:hover {
-    transform: scale(1.05);
+#mobile-menu a:hover,
+#mobile-menu a:active {
+    background-color: rgba(59, 130, 246, 0.1); /* Light blue hover background */
+    color: #3b82f6; /* Blue accent on hover */
+}
+
+/* Ensure menu is above all content */
+#mobile-menu {
+    z-index: 70; /* High z-index for layering */
 }
