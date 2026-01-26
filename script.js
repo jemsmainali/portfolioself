@@ -96,3 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {  // Ensure DOM is loaded
         }
     });
 });
+// Add this at the end of your script.js
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+        nav.classList.add('bg-gray-900/95', 'shadow-2xl');
+    } else {
+        nav.classList.remove('bg-gray-900/95', 'shadow-2xl');
+    }
+});
