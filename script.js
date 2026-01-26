@@ -104,4 +104,4 @@ window.addEventListener('scroll', () => {
     } else {
         nav.classList.remove('bg-gray-900/95', 'shadow-2xl');
     }
-});
+}); 
