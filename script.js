@@ -105,3 +105,27 @@ window.addEventListener('scroll', () => {
         nav.classList.remove('bg-gray-900/95', 'shadow-2xl');
     }
 }); 
+
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+    } else {
+        navbar.classList.remove('nav-scrolled');
+    }
+});
+const menuBtn = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = document.getElementById('menu-icon');
+
+menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    
+    mobileMenu.classList.toggle('hidden');
+    // Change icon between 'bars' and 'times' (X)
+    menuIcon.classList.toggle('fa-bars');
+    menuIcon.classList.toggle('fa-times');
+    
+    // Update ARIA for accessibility
+    menuBtn.setAttribute('aria-expanded', !isOpen);
+});

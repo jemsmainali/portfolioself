@@ -14,26 +14,59 @@
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome for social icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
     <!-- Navigation -->
-<nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 backdrop-blur-sm z-50">
+<nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-4" role="navigation" aria-label="Main Navigation">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4 relative">  <!-- Added 'relative' for absolute menu positioning -->
-            <div class="flex items-center">
-                <img src="assets/profile-pic (1).png" alt="Profile Picture" class="w-8 h-8 rounded-full mr-3 hover:opacity-80 transition">
-                <h1 class="text-xl font-bold text-blue-400">Nischal Mainali</h1>
+        <div class="glass-nav flex justify-between items-center px-5 py-2 md:px-6 md:py-3 rounded-2xl border border-white/10 shadow-xl">
+            
+            <a href="#hero" class="flex items-center group cursor-pointer outline-none focus:ring-2 focus:ring-blue-500 rounded-lg">
+                <div class="relative shrink-0">
+                    <img src="assets/profile-pic (1).png" alt="Nischal Mainali Profile" class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-blue-500/50 group-hover:border-blue-400 transition-all duration-300 object-cover">
+                    <div class="absolute inset-0 rounded-full bg-blue-500/20 blur-sm group-hover:blur-md animate-pulse transition-all"></div>
+                </div>
+                <h1 class="ml-3 text-lg md:text-xl font-bold tracking-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Nischal</span>
+                    <span class="text-blue-400 group-hover:text-blue-300 transition-colors">Mainali</span>
+                </h1>
+            </a>
+
+            <div class="hidden md:flex items-center">
+                <ul class="flex items-center space-x-1 mr-4">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                </ul>
+                <a href="#contact" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-all shadow-lg shadow-blue-600/20 font-semibold text-sm active:scale-95">
+                    Let's Talk
+                </a>
             </div>
-            <ul id="mobile-menu" class="hidden md:flex space-x-8 md:space-x-8 flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 z-70 transition-all duration-300 ease-in-out transform -translate-y-full md:translate-y-0">  <!-- Increased z-70, added transform for slide animation -->
-                <li><a href="#hero" class="block py-2 md:py-0 hover:text-blue-400 transition">Home</a></li>
-                <li><a href="#about" class="block py-2 md:py-0 hover:text-blue-400 transition">About</a></li>
-                <li><a href="#skills" class="block py-2 md:py-0 hover:text-blue-400 transition">Skills</a></li>
-                <li><a href="#projects" class="block py-2 md:py-0 hover:text-blue-400 transition">Projects</a></li>
-                <li><a href="#experience" class="block py-2 md:py-0 hover:text-blue-400 transition">Experience</a></li>
-                <li><a href="#contact" class="block py-2 md:py-0 hover:text-blue-400 transition">Contact</a></li>
-            </ul>
-            <button id="mobile-menu-button" class="md:hidden text-blue-400 focus:outline-none hover:text-blue-300"><i class="fas fa-bars"></i> Menu</button>  <!-- Added hamburger icon for better UX -->
+
+            <button id="mobile-menu-button" 
+                    class="md:hidden p-2 text-gray-400 hover:text-white transition-colors focus:outline-none" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-menu">
+                <span class="sr-only">Open main menu</span>
+                <i class="fas fa-bars text-xl" id="menu-icon"></i>
+            </button>
         </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full p-4 md:hidden">
+        <ul class="glass-card flex flex-col space-y-1 p-4 rounded-2xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-xl bg-gray-900/90">
+            <li><a href="#hero" class="mobile-link group flex items-center"><i class="fas fa-home mr-3 text-gray-500 group-hover:text-blue-400"></i> Home</a></li>
+            <li><a href="#about" class="mobile-link group flex items-center"><i class="fas fa-user mr-3 text-gray-500 group-hover:text-blue-400"></i> About</a></li>
+            <li><a href="#projects" class="mobile-link group flex items-center"><i class="fas fa-code mr-3 text-gray-500 group-hover:text-blue-400"></i> Projects</a></li>
+            <li>
+                <hr class="border-white/5 my-2">
+                <a href="#contact" class="mobile-link bg-blue-600/10 text-blue-400 text-center font-bold hover:bg-blue-600 hover:text-white">
+                    Contact Me
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>
 
@@ -57,74 +90,136 @@
 </section>
 
     <!-- About Me Section -->
-    <section id="about" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-center mb-10">About Me</h3>
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <p class="text-lg mb-6">I’m a passionate web developer with 1+ years of experience creating user-friendly and responsive web applications.
-                         I specialize in Python-based web development using frameworks like Flask and Django, alongside frontend technologies such as HTML, CSS, JavaScript, and React.
-                          I enjoy building full-stack solutions that are efficient, scalable, and visually engaging. 
-                          When not coding, I contribute to open-source projects and explore new technologies to continuously enhance my skills.</p>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-semibold">Skills Overview</h4>
-                            <div class="mt-2">
-                                <div class="flex justify-between"><span>Python</span><span>90%</span></div>
-                                <div class="bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full w-9/10"></div></div>
+   <section id="about" class="py-24 bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="relative">
+                <div class="visual-identity-card">
+                    <div class="identity-glow"></div>
+                    <div class="identity-content">
+                        <span class="text-blue-500 font-mono text-sm">Full-Stack Identity</span>
+                        <h3 class="text-3xl font-bold text-white mt-2">Nischal Mainali</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-center space-x-3 text-gray-400">
+                                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <span>Available for new projects</span>
                             </div>
-                            <div class="mt-2">
-                                <div class="flex justify-between"><span>React</span><span>75%</span></div>
-                                <div class="bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full w-5/6"></div></div>
-                            </div>
-                            <div class="mt-2">
-                                <div class="flex justify-between"><span>Flask</span><span>95%</span></div>
-                                <div class="bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full w-19/20"></div></div>
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                                <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Primary Stack</p>
+                                <p class="text-white font-medium italic">Python • Django • React • Tailwind</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <img src="assets/profile-pic (1).png" alt="Profile Picture" class="rounded-full mx-auto w-48 h-48 object-cover">
+            </div>
+
+            <div>
+                <h2 class="text-4xl font-bold text-white mb-6">
+                    Turning complex logic into <span class="text-blue-400">elegant reality.</span>
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    I specialize in building robust backend systems and intuitive user interfaces. My approach focuses on clean code, scalability, and high-performance architecture.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="skill-row">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-300 font-medium">Python & Django</span>
+                            <span class="text-blue-400">95%</span>
+                        </div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-300 font-medium">React</span>
+                            <span class="text-blue-400">70%</span>
+                        </div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 80%"></div></div>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-center mb-10">Skills</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition transform hover:scale-105">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-400">Languages</h4>
-                    <ul class="space-y-2">
-                        <li>JavaScript</li>
-                        <li>TypeScript</li>
-                        <li>HTML/CSS</li>
-                    </ul>
+   <section id="skills" class="py-24 bg-gray-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h3 class="text-4xl md:text-5xl font-bold mb-4">Technical <span class="text-blue-500">Expertise</span></h3>
+            <p class="text-gray-400 max-w-2xl mx-auto">A specialized toolkit focused on building high-performance Python backends and interactive frontend experiences.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 glass-card p-8 rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all group">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold">Python Development</h4>
+                            <p class="text-sm text-blue-400 font-mono">Backend & Automation</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition transform hover:scale-105">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-400">Frameworks</h4>
-                    <ul class="space-y-2">
-                        <li>React</li>
-                        <li>Python</li>
-                        <li>Flask</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg hover:shadow-lg transition transform hover:scale-105">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-400">Tools</h4>
-                    <ul class="space-y-2">
-                        <li>Git</li>
-                        <li>VS Code</li>
-                        <li>Figma</li>
-                        <li>PyCharm</li>
-                        <li>Canvas</li>
-                    </ul>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div class="bg-gray-800/50 p-4 rounded-2xl flex flex-col items-center text-center">
+                        <i class="fas fa-leaf text-green-400 mb-2"></i>
+                        <span class="text-sm font-medium">Flask</span>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-2xl flex flex-col items-center text-center">
+                        <i class="fas fa-project-diagram text-blue-400 mb-2"></i>
+                        <span class="text-sm font-medium">Django</span>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-2xl flex flex-col items-center text-center">
+                        <i class="fas fa-database text-yellow-500 mb-2"></i>
+                        <span class="text-sm font-medium">MongoDB</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-cyan-500/30 transition-all group">
+                <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:rotate-12 transition-transform">
+                    <i class="fab fa-react"></i>
+                </div>
+                <h4 class="text-2xl font-bold mb-2">Frontend</h4>
+                <p class="text-gray-400 text-sm mb-6">Creating responsive, pixel-perfect user interfaces.</p>
+                <ul class="space-y-3">
+                    <li class="flex items-center text-sm text-gray-300">
+                        <i class="fab fa-js text-yellow-400 mr-2"></i> JavaScript (ES6+)
+                    </li>
+                    <li class="flex items-center text-sm text-gray-300">
+                        <i class="fab fa-react text-cyan-400 mr-2"></i> React.js
+                    </li>
+                    <li class="flex items-center text-sm text-gray-300">
+                        <i class="fab fa-css3-alt text-blue-500 mr-2"></i> Tailwind CSS
+                    </li>
+                </ul>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-orange-500/30 transition-all">
+                <h4 class="text-xl font-bold mb-4">DevOps & Tools</h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-gray-800 rounded-lg text-xs border border-white/5 hover:bg-orange-500/20 transition-colors">Git</span>
+                    <span class="px-3 py-1 bg-gray-800 rounded-lg text-xs border border-white/5 hover:bg-orange-500/20 transition-colors">VS Code</span>
+                    <span class="px-3 py-1 bg-gray-800 rounded-lg text-xs border border-white/5 hover:bg-orange-500/20 transition-colors">Figma</span>
+                    <span class="px-3 py-1 bg-gray-800 rounded-lg text-xs border border-white/5 hover:bg-orange-500/20 transition-colors">Postman</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 glass-card p-6 rounded-3xl border border-white/5 flex items-center justify-between overflow-hidden relative">
+                <div class="relative z-10">
+                    <h4 class="text-lg font-bold">University of Pokhara</h4>
+                    <p class="text-blue-400 text-sm italic">BCIS Degree in progress (2022-2025)</p>
+                </div>
+                <i class="fas fa-graduation-cap text-6xl text-white/5 absolute -right-4 top-2"></i>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-gray-800">
@@ -236,90 +331,172 @@
     </section>
 
     <!-- Experience / Education Section -->
-    <section id="experience" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-center mb-10">Experience & Education</h3>
-            <div class="relative">
-                <div class="border-l-2 border-blue-500 pl-8">
-                    <div class="mb-8">
-                        <h4 class="text-xl font-semibold">Python Developer</h4>
-                        <p class="text-blue-400">Online Notes Nepal 2024 Internship</p>
-                        <p>Developed responsive web apps using Flask and Django.</p>
+    <section id="experience" class="py-24 bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid lg:grid-cols-2 gap-16">
+            
+            <div>
+                <div class="flex items-center space-x-4 mb-10">
+                    <div class="p-3 bg-blue-600/20 rounded-xl">
+                        <i class="fas fa-briefcase text-blue-400 text-xl"></i>
                     </div>
-                    <div class="mb-8">
-                        <h4 class="text-xl font-semibold">Bachelor's in Computer Information System</h4>
-                        <p class="text-blue-400">University of Pokhara - 2022-2025</p>
-                        <p>Focused on web development and algorithms.</p>
+                    <h2 class="text-3xl font-bold text-white">Experience</h2>
+                </div>
+
+                <div class="space-y-8 border-l-2 border-white/5 ml-4">
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-900 border-2 border-blue-500 group-hover:scale-125 transition-transform"></div>
+                        <div class="experience-card">
+                            <span class="text-blue-400 font-mono text-sm">2023 — Present</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Python Developer</h3>
+                            <p class="text-gray-400 text-sm italic mb-3">Freelance / Project Based</p>
+                            <ul class="text-gray-400 text-sm space-y-2 list-disc list-inside">
+                                <li>Developed custom automation scripts using Python.</li>
+                                <li>Built RESTful APIs with Flask and Django.</li>
+                                <li>Optimized database queries for better performance.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div>
+                <div class="flex items-center space-x-4 mb-10">
+                    <div class="p-3 bg-cyan-600/20 rounded-xl">
+                        <i class="fas fa-graduation-cap text-cyan-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white">Education</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="education-card group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Bachelor of Computer Information Systems (BCIS)</h3>
+                                <p class="text-blue-400 mt-1">Pokhara University</p>
+                            </div>
+                            <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-bold rounded-full border border-cyan-500/20">
+                                2022 — 2026
+                            </span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Focusing on Software Engineering, Database Management, and Business Analytics. Currently maintaining a high academic standing with a focus on Python-driven development.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-white/5 flex gap-4">
+                            <span class="text-xs text-gray-500 font-mono"><i class="fas fa-check-circle mr-1 text-cyan-500"></i> GPA: 3.x/4.0</span>
+                            <span class="text-xs text-gray-500 font-mono"><i class="fas fa-check-circle mr-1 text-cyan-500"></i> Dean's List</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-center mb-10">Contact Me</h3>
-            <div class="grid md:grid-cols-2 gap-10">
-                <form id="contact-form" action="https://formspree.io/f/meeqwjga" method="POST" class="space-y-4">
-    <!-- Hidden input for Formspree (helps with spam) -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="name" placeholder="Name" class="w-full p-3 bg-gray-900 rounded" required>
-    <input type="email" name="email" placeholder="Email" class="w-full p-3 bg-gray-900 rounded" required>
-    <textarea name="message" placeholder="Message" rows="5" class="w-full p-3 bg-gray-900 rounded" required></textarea>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded transition">Send Message</button>
-</form>
-                <div class="text-center">
-    <p class="mb-4">Let's connect!</p>
-    <div class="flex justify-center space-x-6">  <!-- Increased space for better spacing -->
-        <a href="https://github.com/jemsmainali" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-3xl transition transform hover:scale-110" title="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/nischal-mainali/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-3xl transition transform hover:scale-110" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://www.facebook.com/share/1FraLJnVhv/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-3xl transition transform hover:scale-110" title="Facebook">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/jemsmainali?igsh=OTM5M3N6amdkenl1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-3xl transition transform hover:scale-110" title="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/qr/DVLY33BGKV3GE1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-3xl transition transform hover:scale-110" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-</div>
+   <section id="contact" class="py-24 bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">Get In <span class="text-blue-500">Touch</span></h2>
+            <p class="text-gray-400">Have a project in mind or just want to say hi? Feel free to reach out!</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5 space-y-6">
+                <div class="contact-tile group">
+                    <div class="tile-icon bg-blue-600/10 text-blue-400">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Email Me</p>
+                        <p class="text-white font-medium group-hover:text-blue-400 transition">nischalmainali@example.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-tile group">
+                    <div class="tile-icon bg-cyan-600/10 text-cyan-400">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">LinkedIn</p>
+                        <p class="text-white font-medium group-hover:text-cyan-400 transition">linkedin.com/in/nischal-mainali</p>
+                    </div>
+                </div>
+
+                <div class="contact-tile group">
+                    <div class="tile-icon bg-gray-600/20 text-white">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">GitHub</p>
+                        <p class="text-white font-medium group-hover:text-blue-400 transition">github.com/nischal-mainali</p>
+                    </div>
                 </div>
             </div>
+
+            <div class="lg:col-span-7">
+                <form class="glass-form">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-2">
+                            <label class="text-sm text-gray-400 ml-1">Full Name</label>
+                            <input type="text" placeholder="John Doe" class="form-input">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm text-gray-400 ml-1">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="form-input">
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-6">
+                        <label class="text-sm text-gray-400 ml-1">Message</label>
+                        <textarea rows="5" placeholder="Tell me about your project..." class="form-input resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                    </button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
-   <footer class="bg-gray-900 py-10 relative overflow-hidden">
-    <!-- Subtle gradient overlay for visual interest -->
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 opacity-20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <!-- Social Links -->
-        <div class="flex justify-center space-x-6 mb-6">
-            <a href="https://github.com/jemsmainali" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-2xl transition transform hover:scale-110" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/nischal-mainali/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-2xl transition transform hover:scale-110" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.facebook.com/share/1FraLJnVhv/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-2xl transition transform hover:scale-110" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/jemsmainali?igsh=OTM5M3N6amdkenl1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-2xl transition transform hover:scale-110" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/qr/DVLY33BGKV3GE1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-2xl transition transform hover:scale-110" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+  <footer class="bg-gray-900 pt-16 pb-8 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+            
+            <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold text-white mb-2">
+                    Nischal <span class="text-blue-500">Mainali</span>
+                </h2>
+                <p class="text-gray-500 text-sm max-w-xs">
+                    Building robust backends and seamless digital experiences with Python and modern web tech.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#hero" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Home</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">About</a>
+                <a href="#skills" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Skills</a>
+                <a href="#projects" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Projects</a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Contact</a>
+            </div>
+
+            <div class="flex space-x-4">
+                <a href="#" class="footer-social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+            </div>
         </div>
-        <!-- Copyright and Back to Top -->
-        <p class="text-gray-400 mb-4">&copy; 2023 Nischal Mainali. All rights reserved.</p>
-        <a href="#hero" class="text-blue-400 hover:text-blue-300 transition inline-block">Back to Top <i class="fas fa-arrow-up ml-1"></i></a>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-xs">
+                © 2024 Nischal Mainali. All rights reserved.
+            </p>
+            
+        </div>
     </div>
 </footer>
 

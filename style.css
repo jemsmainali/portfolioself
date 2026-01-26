@@ -60,3 +60,303 @@ nav {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0f172a; }
 ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+
+/* Glassmorphism Effect for Navbar */
+.glass-nav {
+    background: rgba(15, 23, 42, 0.7); /* Deep dark blue with transparency */
+    backdrop-filter: blur(12px); /* This creates the frost effect */
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Nav Link Hover States */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    color: #94a3b8; /* Slate-400 */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #3b82f6; /* Blue-500 */
+}
+
+/* The Animated Underline */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 1rem;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: calc(100% - 2rem);
+}
+
+/* Active Scroll State (Applied via JS) */
+.nav-scrolled {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.nav-scrolled .glass-nav {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(59, 130, 246, 0.3); /* Subtle blue border when scrolled */
+}
+
+/* Mobile Link Styling */
+.mobile-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+}
+
+.mobile-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+/* Bento Grid Glow Effects */
+.glass-card {
+    position: relative;
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+}
+
+/* Subtle inner glow on hover */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Specific icon colors */
+.fa-python { color: #3776ab; }
+.fa-react { color: #61dafb; }
+.fa-js { color: #f7df1e; }
+.fa-leaf { color: #44b78b; } /* For Flask/Green tech */
+/* About Section Specifics */
+#about .skill-bar-container {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+#about .skill-bar-container:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
+    transform: translateX(10px);
+}
+/* Visual Identity Card (Replacing the Image) */
+.visual-identity-card {
+    position: relative;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 3rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.visual-identity-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Background Glow behind text */
+.identity-glow {
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.identity-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modern Progress Bars */
+.progress-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2dd4bf);
+    border-radius: 99px;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+/* Text Styling */
+.skill-row {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1rem;
+    transition: background 0.3s ease;
+}
+
+.skill-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+/* Experience & Education Styling */
+.experience-card, .education-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.experience-card:hover, .education-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateX(8px);
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.education-card:hover {
+    border-color: rgba(45, 212, 191, 0.3); /* Cyan border for education */
+}
+
+/* Timeline specific dots */
+.experience-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 24px;
+    width: 20px;
+    height: 2px;
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* Contact Section Styles */
+.contact-tile {
+    display: flex;
+    items-center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.contact-tile:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
+    transform: translateX(10px);
+}
+
+.tile-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-size: 1.25rem;
+}
+
+/* Glass Form Styles */
+.glass-form {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 2rem;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #2563eb;
+    box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+}
+/* Footer Social Links */
+.footer-social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    color: #94a3b8; /* slate-400 */
+    transition: all 0.3s ease;
+}
+
+.footer-social-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #3b82f6;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+}
+
+/* Subtle Heart Animation */
+.fa-heart:hover {
+    color: #ef4444 !important;
+    animation: heartBeat 0.8s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
