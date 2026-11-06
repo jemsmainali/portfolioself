@@ -31,4 +31,4 @@ The project cards use a plain CSS 3D tilt (`.tilt` in `index.css`): pointer posi
 
 ## Deploy
 
-`render.yaml` describes the Render static site: `npm ci && npm run build`, publish `dist`, auto-deploy on commit, and a rewrite from `/*` to `/index.html`. The old plain-HTML site is kept at git tag `pre-react`.
+`npm run build` writes the finished site to the repo root (`index.html`, `static/`, `favicon.svg`, `og.png`); the source page is `src/index.html`. Because the built files are committed, any host that serves the repo as-is shows the real site: Render with publish path `.`, or GitHub Pages from `main` / root. **After changing content, run `npm run build` and commit the result.** `render.yaml` describes the Render static site (build `npm ci && npm run build`, publish `.`, auto-deploy on commit, rewrite `/*` to `/index.html`). The old plain-HTML site is kept at git tag `pre-react`.
