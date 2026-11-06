@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: jems-mainali-portfolio
+    runtime: static
+    branch: main
+    buildCommand: echo "No build step"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
