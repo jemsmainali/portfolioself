@@ -1,8 +1,12 @@
 services:
   - type: web
-    name: jems-mainali-portfolio
+    name: nischal-mainali
     runtime: static
     branch: main
-    buildCommand: echo "No build step"
-    staticPublishPath: .
-    pullRequestPreviewsEnabled: false
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeployTrigger: commit
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

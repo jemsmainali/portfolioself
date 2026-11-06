@@ -1,45 +1,34 @@
 # Jems Mainali · portfolio
 
-Plain HTML, CSS and JavaScript. No framework, no libraries, no build step.
+Vite, React, Tailwind CSS, three.js with @react-three/fiber and drei, and motion.
 
-Run it locally:
+## Run it
 
 ```sh
-python -m http.server 8000
-# open http://localhost:8000
+npm ci
+npm run dev       # http://localhost:5173
+npm run build     # production build in dist/
+npm run preview   # serve dist/ at http://localhost:4173
 ```
 
-## How each effect works
+Contact form: create `.env.local` with `VITE_FORM_ENDPOINT=https://formspree.io/f/xxxx` (or any endpoint that accepts a POST). If it's empty, the site shows the email address with a copy button instead of the form. On Render, add the same variable under Environment and redeploy.
 
-**1. Contour map hero (`initContours` in script.js).**
-A height field is stored on a grid of points 12 px apart. The terrain is five sine waves at random angles added together. The cursor adds a Gaussian bump (a hill) on top. To draw the contour lines I use *marching squares*: for each grid cell and each contour level, I check which of the 4 corners are above the level. That gives a 4-bit number (0–15), and a lookup table says which cell edges the line crosses. Linear interpolation finds where on each edge the field equals the level. Every 5th level is drawn thicker, like index contours on a real map. The elevation tag converts the field value at the summit into metres (0 = 1,400 m, 40 m per line). For the name, each letter is its own `<span>`; every frame I read all letter positions, then set `font-weight` from the letter's distance to the hill (variable font, 200–800). Reading first and writing second avoids layout thrashing. The hero is `position: sticky`, and every later section has a higher `z-index` and a solid background, so it slides over the map. The loop stops when the hero is covered or the tab is hidden.
+All content (projects, experience, skills, links) is in `src/data/portfolio.js`.
 
-**2. Marigold statement (`initStatement`).**
-The paragraph is split into one `<span>` per word. The section is 240vh tall with a sticky inner box. Scroll progress through the section (0 to 1) times the number of words gives how many words get the `lit` class.
+## How the 3D scene works
 
-**3. Work (`initWork`, `initDots`).**
-On screens at least 900 px wide, the section gets a height of *track width − screen width + screen height*. Its inner box is sticky, so while you scroll that extra height, I convert vertical progress into `translateX` on the track. On phones (and with reduced motion) the panels are simply stacked. Each title's `wdth` axis goes from 125 when the panel is centred down to 75 further away. Each diagram is an inline SVG; the dot moves along the `.route` path with `getPointAtLength()`. Gymfied's dot goes there and back.
+- **One fixed canvas.** `src/three/Scene.jsx` renders a single `<Canvas>` in a `position: fixed` layer behind the page, with `pointer-events: none` so the page stays clickable.
+- **Loaded last.** `App.jsx` imports the scene with `React.lazy`, so three.js ends up in its own chunk. It only mounts after `requestIdleCallback`, which means the text paints first.
+- **Only where it makes sense.** On phones (narrow or touch), with `prefers-reduced-motion`, or without WebGL, the scene never loads. `StaticStack.jsx` shows a CSS-only version instead (three rotated divs).
+- **Geometry from code.** Each layer is a drei `RoundedBox` with a transparent `meshPhysicalMaterial` and `Edges`. Reflections come from an `Environment` built from `Lightformer` panels, so no model or HDR file is downloaded. The labels are drei `Html`, which is real DOM text using the page font.
+- **Packets.** Six small spheres with an additive "glow" sphere around each. Every frame they move between two slabs. Even packets go down (requests) and odd ones go up (responses). Their scale follows `sin(progress · π)`, so they grow out of one slab and shrink into the next.
+- **Input without re-renders.** Scroll and pointer values live in a plain object (`src/three/input.js`). DOM listeners write to it and `useFrame` reads it. Values are smoothed with `THREE.MathUtils.damp`, so motion eases out and React never re-renders on scroll.
+- **Scroll choreography.** Scroll progress `p` goes from 0 at the top to 1 just before Work. As `p` rises, the gap between slabs grows, and the camera orbits around the stack (`sin`/`cos` of an angle) and rises. A pointer tilt adds a small rotation.
+- **Fade and pause.** The canvas layer's opacity follows a smoothstep from `p = 0.7` to `1`, so Work is never drawn over. Once it's invisible, or the tab is hidden, `frameloop` switches to `"never"` and nothing renders. DPR is capped at 1.5.
+- **Layout trick.** `camera.setViewOffset` shifts the rendered image to the right, so the stack sits beside the hero text while the camera still orbits the origin.
 
-**4. Experience hover wipe (CSS only).**
-Each row has a marigold `::before` layer with `transform: scaleX(0)`. On hover it scales to 1 with `transform-origin: left`; on leave the origin switches to `right`, so the colour wipes in from the left and out to the right.
-
-**5. Stack table (`initStack`).**
-A real `<table>`. On `pointerover` I add `hl-row` to the cell's row and `hl-col` to every cell with the same `cellIndex`. The cell where both meet gets the full marigold colour.
-
-**6. Contact (`initPeaks`, `initCopy`, `initClock`, `initForm`).**
-The top edge is an SVG path with two peaks in a 1000×200 box (`preserveAspectRatio="none"` so it stretches). As the section enters the screen, the peak heights are multiplied by scroll progress. The copy button uses the Clipboard API and falls back to selecting the text. The clock uses `Intl.DateTimeFormat` with `timeZone: 'Asia/Kathmandu'` (UTC+05:45).
-
-## Contact form
-
-Set `FORM_ENDPOINT` at the top of `script.js` to a form backend URL (for example Formspree). The form sends with `fetch` and only says "sent" when the server answers with a 2xx status. Errors and timeouts show a message with my email. If `FORM_ENDPOINT` is empty, the form stays hidden and visitors see my email instead.
-
-## Accessibility
-
-- `prefers-reduced-motion`: no hill drift or easing, all words lit, panels stacked, dots still, peaks at full height.
-- Keyboard: skip link, visible focus rings, and focusing a link in an off-screen work panel scrolls to it.
-- No JavaScript: all text, links and the email still show. Only the effects are missing.
-- No sideways scroll at phone width.
+The project cards use a plain CSS 3D tilt (`.tilt` in `index.css`): pointer position sets `--rx`/`--ry`, with no WebGL involved.
 
 ## Deploy
 
-`render.yaml` describes a Render static site that publishes the repo root (`.`).
+`render.yaml` describes the Render static site: `npm ci && npm run build`, publish `dist`, auto-deploy on commit, and a rewrite from `/*` to `/index.html`. The old plain-HTML site is kept at git tag `pre-react`.
